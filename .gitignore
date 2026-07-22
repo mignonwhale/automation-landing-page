@@ -1,0 +1,40 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+dist-ssr/
+.next/
+out/
+build/
+
+# env
+.env
+.env.*
+!.env.example
+!.env.local.example
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# os
+.DS_Store
+Thumbs.db
+
+# vite
+*.local
+
+# figma make (로컬에는 존재하지 않고 Figma Make 플랫폼이 자동 제공하는 설정)
+.figma/
+
+# test coverage
+coverage/
