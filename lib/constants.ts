@@ -77,11 +77,37 @@ export const PROBLEMS = [
   { icon: '🔄', text: '담당자가 바뀌면 업무 방법을 처음부터 다시 설명해야 한다' },
 ] as const
 
-export const SOLUTIONS = [
-  { icon: '🔁', title: '반복 작업 자동화 매크로', desc: '매일 반복하는 작업을 버튼 한 번으로 끝낼 수 있습니다.', btn: '매크로 샘플 다운로드' },
-  { icon: '📄', title: 'Excel ↔ PDF 자동 변환', desc: '여러 문서를 자동으로 변환하여 반복적인 문서 작업을 줄여드립니다.', btn: '변환 샘플 다운로드' },
-  { icon: '⚙️', title: 'VBA 맞춤 자동화', desc: '회사 업무에 맞춘 자동화 프로그램으로 업무 효율을 높여드립니다.', btn: 'VBA 샘플 다운로드' },
-] as const
+type Solution = {
+  icon: string
+  title: string
+  desc: string
+  btn: string
+  media?: string
+}
+
+export const SOLUTIONS: Solution[] = [
+  {
+    icon: '🔁',
+    title: '반복 작업 자동화 매크로',
+    desc: '매일 반복하는 작업을 버튼 한 번으로 끝낼 수 있습니다.',
+    btn: '매크로 샘플 다운로드',
+    media: '/macro-time-sync-demo.gif',
+  },
+  {
+    icon: '📄',
+    title: 'Excel ↔ PDF 자동 변환',
+    desc: '여러 문서를 자동으로 변환하여 반복적인 문서 작업을 줄여드립니다.',
+    btn: '변환 샘플 다운로드',
+    media: '/pdf-excel-before-after.png',
+  },
+  {
+    icon: '⚙️',
+    title: 'VBA 맞춤 자동화',
+    desc: '회사 업무에 맞춘 자동화 프로그램으로 업무 효율을 높여드립니다.',
+    btn: 'VBA 샘플 다운로드',
+    media: '/vba-request-to-quote.png',
+  },
+]
 
 export const TRUST_POINTS = [
   '현직 11년차 개발자가 직접 개발',

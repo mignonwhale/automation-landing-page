@@ -23,7 +23,7 @@ export default function CareerSection() {
         <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4">
           {PROJECTS.map((p) => (
             <div key={p.title} className="rounded-2xl border border-[#243447] bg-gray-900 px-5 py-6">
-              <span className="mb-3 inline-block rounded-md bg-slate-900 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.05em] text-slate-500">
+              <span className="mb-3 inline-block rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-500">
                 {p.tag}
               </span>
               <h3 className="m-0 mb-2 text-base font-bold text-slate-100">{p.title}</h3>

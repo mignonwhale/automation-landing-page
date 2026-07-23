@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { SOLUTIONS } from '@/lib/constants'
 
 export default function SolutionSection() {
@@ -10,15 +11,21 @@ export default function SolutionSection() {
         <p className="mb-12 text-center text-[15px] text-slate-400">
           지금 바로 샘플을 확인해보세요 — 이메일 없이 즉시 다운로드
         </p>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-5">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] items-start gap-5">
           {SOLUTIONS.map((item) => (
             <div
               key={item.title}
               className="group flex flex-col gap-4 rounded-[20px] border border-[#243447] bg-gray-900 px-7 py-8 transition-all hover:-translate-y-0.5 hover:border-green-500/40"
             >
-              <div className="flex aspect-video w-full flex-col items-center justify-center gap-2 rounded-[10px] border border-dashed border-[#243447] bg-slate-900 text-sm text-slate-500">
-                <span className="text-[28px]">🖼️</span>
-                <span>스크린샷 / GIF 영역</span>
+              <div className="relative aspect-8/9 w-full overflow-hidden rounded-[10px] border border-[#243447] bg-slate-900">
+                {item.media ? (
+                  <Image src={item.media} alt={`${item.title} 데모`} fill unoptimized className="object-cover object-top-left" />
+                ) : (
+                  <div className="flex h-full w-full flex-col items-center justify-center gap-2 border border-dashed border-[#243447] text-sm text-slate-500">
+                    <span className="text-[28px]">🖼️</span>
+                    <span>스크린샷 / GIF 영역</span>
+                  </div>
+                )}
               </div>
               <span className="text-4xl">{item.icon}</span>
               <h3 className="m-0 text-lg font-bold text-slate-100">{item.title}</h3>

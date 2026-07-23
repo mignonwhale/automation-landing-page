@@ -38,3 +38,7 @@ Thumbs.db
 
 # test coverage
 coverage/
+
+# docs 폴더는 기획 문서(.md)만 커밋. GIF/스크린샷 제작용 원본 녹화 영상·PDF·실행파일 등은 제외 (완성된 결과물은 public/에 커밋)
+docs/*
+!docs/*.md
