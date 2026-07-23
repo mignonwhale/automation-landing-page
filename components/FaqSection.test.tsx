@@ -30,4 +30,19 @@ describe('FaqSection', () => {
     expect(screen.queryByText(FAQS[0].a)).not.toBeInTheDocument()
     expect(screen.getByText(FAQS[1].a)).toBeInTheDocument()
   })
+
+  it('FAQPage 구조화 데이터(JSON-LD)를 포함한다', () => {
+    const { container } = render(<FaqSection />)
+    const script = container.querySelector('script[type="application/ld+json"]')
+    expect(script).not.toBeNull()
+
+    const json = JSON.parse(script?.textContent ?? '{}')
+    expect(json['@type']).toBe('FAQPage')
+    expect(json.mainEntity).toHaveLength(FAQS.length)
+    expect(json.mainEntity[0]).toEqual({
+      '@type': 'Question',
+      name: FAQS[0].q,
+      acceptedAnswer: { '@type': 'Answer', text: FAQS[0].a },
+    })
+  })
 })

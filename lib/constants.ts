@@ -133,3 +133,23 @@ export const SITE_URL = 'https://automation-landing-page-kappa.vercel.app'
 export const SITE_TITLE = '업무 자동화 전문가 | 엑셀 매크로·VBA 자동화'
 export const SITE_DESCRIPTION =
   '엑셀 매크로(VBA) 자동화부터 맞춤 업무 자동화까지, 반복되는 업무를 더 빠르고 정확하게 처리할 수 있도록 도와드립니다. 11년차 풀스택 개발자가 직접 개발합니다.'
+
+export const BUSINESS_JSON_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: '업무 자동화 전문가',
+  description: SITE_DESCRIPTION,
+  url: SITE_URL,
+  image: `${SITE_URL}/opengraph-image.png`,
+  email: CONTACT_EMAIL,
+  areaServed: 'KR',
+  priceRange: '₩30,000~',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: '자동화 서비스',
+    itemListElement: SERVICES.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: s.title, description: s.desc },
+    })),
+  },
+}

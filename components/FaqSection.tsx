@@ -3,11 +3,22 @@
 import { useState } from 'react'
 import { FAQS } from '@/lib/constants'
 
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQS.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: { '@type': 'Answer', text: faq.a },
+  })),
+}
+
 export default function FaqSection() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
     <section className="border-y border-[#1E2D42] bg-[#0D1424] px-6 py-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <div className="mx-auto max-w-[680px]">
         <h2 className="mb-12 text-center text-[clamp(24px,4vw,36px)] font-extrabold tracking-[-0.02em] text-slate-100">
           자주 묻는 질문
