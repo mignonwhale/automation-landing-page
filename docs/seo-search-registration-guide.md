@@ -23,7 +23,7 @@
    - HTML 태그 방식: 인증 코드를 `app/layout.tsx`의 `metadata.verification.google`에 추가하면 됨 (예: `verification: { google: '인증코드' }`) — 인증 코드만 알려주면 코드에 반영 가능
    - 또는 DNS 레코드 인증 (도메인 관리 콘솔에서 처리, Vercel 기본 도메인이면 HTML 태그 방식이 더 간단)
 4. 인증 완료 후 **Sitemaps** 메뉴에서 `sitemap.xml` 제출 (`https://.../sitemap.xml`)
-5. **URL 검사** 도구로 메인 페이지 URL 입력 → **색인 생성 요청** 클릭
+5. **URL 검사** 도구로 메인 페이지 URL 입력 → **색인 생성 요청** 클릭 (2026/07/23 완료)
 6. 보통 며칠~몇 주 내 검색 결과 반영
 
 ## 네이버 — 네이버 서치어드바이저

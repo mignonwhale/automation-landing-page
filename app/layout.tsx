@@ -10,16 +10,19 @@ export const metadata: Metadata = {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
-    siteName: "업무 자동화 전문가",
-    locale: "ko_KR",
-    type: "website",
+    siteName: '업무 자동화 전문가',
+    locale: 'ko_KR',
+    type: 'website',
   },
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
   },
-  verification: { google: "OAgiI9KhGeNsgHtOJycz0EjvhNcwpwJiS98Ez_30x88" },
+  verification: {
+    google: 'OAgiI9KhGeNsgHtOJycz0EjvhNcwpwJiS98Ez_30x88',
+    other: { 'naver-site-verification': 'bc51a9f60f62953f7061f7fd3f016bcdc345958e' },
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
