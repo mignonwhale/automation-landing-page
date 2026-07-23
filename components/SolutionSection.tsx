@@ -30,9 +30,14 @@ export default function SolutionSection() {
               <span className="text-4xl">{item.icon}</span>
               <h3 className="m-0 text-lg font-bold text-slate-100">{item.title}</h3>
               <p className="m-0 flex-1 text-[15px] leading-[1.7] text-slate-400">{item.desc}</p>
-              <button className="rounded-xl border-2 border-green-500 py-3 text-sm font-semibold text-green-500 transition-colors hover:bg-green-500 hover:text-[#021a0c]">
+              <a
+                href={item.downloadUrl}
+                download
+                className="block rounded-xl border-2 border-green-500 py-3 text-center text-sm font-semibold text-green-500 transition-colors hover:bg-green-500 hover:text-[#021a0c]"
+              >
                 ↓ {item.btn}
-              </button>
+              </a>
+              <p className="m-0 text-center text-xs text-slate-500">{item.downloadNote}</p>
             </div>
           ))}
         </div>

@@ -83,7 +83,11 @@ type Solution = {
   desc: string
   btn: string
   media?: string
+  downloadUrl: string
+  downloadNote: string
 }
+
+const RELEASE_BASE = 'https://github.com/mignonwhale/automation-landing-page/releases/download/samples-v2'
 
 export const SOLUTIONS: Solution[] = [
   {
@@ -92,6 +96,8 @@ export const SOLUTIONS: Solution[] = [
     desc: '매일 반복하는 작업을 버튼 한 번으로 끝낼 수 있습니다.',
     btn: '매크로 샘플 다운로드',
     media: '/macro-time-sync-demo.gif',
+    downloadUrl: `${RELEASE_BASE}/1.sample-macro.zip`,
+    downloadNote: '압축 해제 후 실행 시 Windows 보안 경고가 뜨면 "추가 정보 → 실행"을 눌러주세요.',
   },
   {
     icon: '📄',
@@ -99,6 +105,8 @@ export const SOLUTIONS: Solution[] = [
     desc: '여러 문서를 자동으로 변환하여 반복적인 문서 작업을 줄여드립니다.',
     btn: '변환 샘플 다운로드',
     media: '/pdf-excel-before-after.png',
+    downloadUrl: `${RELEASE_BASE}/2.sample-pdf2excel.zip`,
+    downloadNote: '압축 해제 후 실행 시 Windows 보안 경고가 뜨면 "추가 정보 → 실행"을 눌러주세요.',
   },
   {
     icon: '⚙️',
@@ -106,6 +114,8 @@ export const SOLUTIONS: Solution[] = [
     desc: '회사 업무에 맞춘 자동화 프로그램으로 업무 효율을 높여드립니다.',
     btn: 'VBA 샘플 다운로드',
     media: '/vba-request-to-quote.png',
+    downloadUrl: `${RELEASE_BASE}/3.sample-vba.xlsm`,
+    downloadNote: '엑셀에서 열 때 상단의 "콘텐츠 사용(매크로 사용)"을 눌러주세요.',
   },
 ]
 
