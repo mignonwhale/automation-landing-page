@@ -99,10 +99,10 @@
 - [x] 섹션별 컴포넌트 렌더링 테스트, 문의 폼 제출 로직 테스트, 허니팟 스팸 방지 테스트 (16개 파일, 27개 테스트 모두 통과)
 - [x] 커버리지 90% 이상 확인 — `app/page.tsx`, `app/layout.tsx`, `app/icon.tsx` 테스트 추가(2026-07-23)로 statement/branch/line 100%, funcs 95.45% 달성
 
-### Phase 6 — 배포 — Vercel 연결까지 완료, 실제 배포는 나머지(Phase 3~5) 정리 후 진행
+### Phase 6 — 배포 — 배포 완료, 문의 폼 발송 테스트만 남음
 - [x] 첫 커밋 및 `origin`(`https://github.com/mignonwhale/automation-landing-page.git`) push (2026-07-23, 커밋 `42a736d`, 43 files)
 - [x] Vercel 프로젝트 연결, 환경 변수(Resend API 키 등) 등록
-- [ ] Vercel 기본 도메인(`*.vercel.app`)으로 배포 — 스팸 방지/SEO/커버리지 정리 후 진행 예정
+- [x] Vercel 기본 도메인(`*.vercel.app`)으로 배포 — `https://automation-landing-page-kappa.vercel.app` (2026-07-23). 참고: `automation-landing-page` 이름이 이미 다른 프로젝트가 선점해 Vercel이 `-kappa` 접미사를 붙였고, `lib/constants.ts`의 `SITE_URL`도 이 실제 도메인으로 수정함 (이전에는 잘못된 남의 도메인을 가리키고 있었음)
 - [ ] 배포 후 실제 문의 폼 발송 테스트
 
 ---
