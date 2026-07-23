@@ -7,7 +7,7 @@ const inputClass =
 const labelClass = 'mb-2 block text-[13px] font-semibold text-slate-400'
 
 export default function ContactForm() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', message: '', website: '' })
   const [status, setStatus] = useState<'idle' | 'submitting' | 'submitted' | 'error'>('idle')
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -43,6 +43,19 @@ export default function ContactForm() {
       onSubmit={handleSubmit}
       className="flex flex-col gap-4.5 rounded-[20px] border border-[#243447] bg-gray-900 px-8 py-9"
     >
+      {/* 허니팟: 사람에게는 보이지 않고 봇만 채우는 스팸 방지용 필드 */}
+      <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+        <label htmlFor="website">홈페이지</label>
+        <input
+          type="text"
+          id="website"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={form.website}
+          onChange={(e) => setForm({ ...form, website: e.target.value })}
+        />
+      </div>
       <div>
         <label className={labelClass}>이름</label>
         <input

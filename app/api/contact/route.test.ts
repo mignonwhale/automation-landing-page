@@ -56,4 +56,13 @@ describe('POST /api/contact', () => {
     const res = await POST(makeRequest({ name: '홍길동', email: 'a@b.com', message: '문의합니다' }))
     expect(res.status).toBe(502)
   })
+
+  it('허니팟 필드가 채워져 있으면 메일을 보내지 않고 200을 반환한다', async () => {
+    const { POST } = await import('./route')
+    const res = await POST(
+      makeRequest({ name: '봇', email: 'bot@example.com', message: '스팸', website: 'http://spam.example' }),
+    )
+    expect(res.status).toBe(200)
+    expect(sendMock).not.toHaveBeenCalled()
+  })
 })

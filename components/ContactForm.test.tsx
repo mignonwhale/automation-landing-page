@@ -44,4 +44,11 @@ describe('ContactForm', () => {
 
     expect(await screen.findByText(/전송에 실패했습니다/)).toBeInTheDocument()
   })
+
+  it('허니팟 필드는 접근성 트리에서 숨겨져 있고 탭 이동에서 제외된다', () => {
+    render(<ContactForm />)
+    const honeypot = screen.getByLabelText('홈페이지', { selector: 'input' })
+    expect(honeypot).toHaveAttribute('tabIndex', '-1')
+    expect(honeypot.closest('[aria-hidden="true"]')).not.toBeNull()
+  })
 })

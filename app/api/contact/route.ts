@@ -6,6 +6,7 @@ type ContactBody = {
   name?: unknown
   email?: unknown
   message?: unknown
+  website?: unknown // 허니팟: 사람 눈에는 안 보이는 필드. 값이 채워져 있으면 봇으로 간주
 }
 
 function isNonEmptyString(value: unknown): value is string {
@@ -14,6 +15,11 @@ function isNonEmptyString(value: unknown): value is string {
 
 export async function POST(request: Request) {
   const body = (await request.json()) as ContactBody
+
+  if (isNonEmptyString(body.website)) {
+    // 봇에게 정상 제출로 보이게 하려고 실제 메일은 보내지 않고 성공 응답만 반환
+    return NextResponse.json({ ok: true })
+  }
 
   if (!isNonEmptyString(body.name) || !isNonEmptyString(body.email) || !isNonEmptyString(body.message)) {
     return NextResponse.json({ error: '이름, 이메일, 문의 내용을 모두 입력해주세요.' }, { status: 400 })

@@ -83,26 +83,26 @@
 - [x] 인라인 `style={{}}` → Tailwind 유틸리티 클래스로 전면 리팩토링 (색상 토큰은 `tailwind.config` 또는 CSS 변수로 정의)
 - [x] FAQ 아코디언, 문의 폼 등 클라이언트 상태가 필요한 부분은 `"use client"` 컴포넌트로 분리
 
-### Phase 3 — 문의 폼 실제 동작 구현 (Resend) — 스팸 방지만 남음
+### Phase 3 — 문의 폼 실제 동작 구현 (Resend) ✅ 완료
 - [x] Resend 계정 생성 및 API 키 발급
 - [x] `app/api/contact/route.ts`에서 Resend API 호출로 폼 제출 처리 (서버 사이드 검증 포함), 수신 주소 `mignonwhale@gmail.com`
 - [x] API 키는 `.env.local`에 저장, git에 커밋되지 않도록 `.gitignore` 확인 (`*.local` 규칙으로 제외됨, `.env.local.example`은 템플릿으로 커밋)
-- [ ] 스팸 방지(허니팟 필드 또는 간단한 rate limit) 적용 여부 결정 — 미정
+- [x] 스팸 방지: 허니팟 필드 적용 (2026-07-23). `ContactForm.tsx`에 화면에는 안 보이는 `website` 필드를 추가하고, `route.ts`에서 값이 채워져 있으면 메일 발송 없이 200만 반환
 
-### Phase 4 — SEO / 메타데이터 — 미착수
-- [x] `app/layout.tsx`의 `metadata` 객체로 title/description/OG 설정 (OG 이미지 리소스는 아직 없음)
-- [ ] `robots.txt`, `sitemap.xml` 필요 여부 결정
-- [ ] favicon 및 OG 이미지 리소스 준비 (`public/` 폴더 자체가 아직 없음)
+### Phase 4 — SEO / 메타데이터 ✅ 완료
+- [x] `app/layout.tsx`의 `metadata` 객체로 title/description/OG 설정 (`SITE_URL`/`SITE_TITLE`/`SITE_DESCRIPTION`은 `lib/constants.ts`로 통합)
+- [x] `robots.txt`, `sitemap.xml` 적용 — Next.js metadata route 컨벤션(`app/robots.ts`, `app/sitemap.ts`)으로 구현, 정적 파일 없이 자동 생성 (2026-07-23)
+- [x] favicon 및 OG 이미지 리소스 준비 — `public/` 폴더 대신 `app/icon.tsx`(32x32 파비콘), `app/opengraph-image.tsx`(1200x630 OG 이미지)를 `next/og`의 `ImageResponse`로 동적 생성 (2026-07-23)
 
-### Phase 5 — 테스트 — 커버리지 목표 미달
+### Phase 5 — 테스트 ✅ 완료
 - [x] Vitest + React Testing Library 설정
-- [x] 섹션별 컴포넌트 렌더링 테스트, 문의 폼 제출 로직 테스트 (13개 파일, 21개 테스트 모두 통과)
-- [ ] 커버리지 90% 이상 확인 — 현재 85.99%(statement/line 기준). `components/`, `lib/`, `app/api/contact/`는 100%지만 `app/page.tsx`, `app/layout.tsx`, `app/icon.tsx`에 테스트가 없어 부족
+- [x] 섹션별 컴포넌트 렌더링 테스트, 문의 폼 제출 로직 테스트, 허니팟 스팸 방지 테스트 (16개 파일, 27개 테스트 모두 통과)
+- [x] 커버리지 90% 이상 확인 — `app/page.tsx`, `app/layout.tsx`, `app/icon.tsx` 테스트 추가(2026-07-23)로 statement/branch/line 100%, funcs 95.45% 달성
 
-### Phase 6 — 배포 — 첫 커밋/push만 완료
+### Phase 6 — 배포 — Vercel 연결까지 완료, 실제 배포는 나머지(Phase 3~5) 정리 후 진행
 - [x] 첫 커밋 및 `origin`(`https://github.com/mignonwhale/automation-landing-page.git`) push (2026-07-23, 커밋 `42a736d`, 43 files)
-- [ ] Vercel 프로젝트 연결, 환경 변수(Resend API 키 등) 등록
-- [ ] Vercel 기본 도메인(`*.vercel.app`)으로 배포
+- [x] Vercel 프로젝트 연결, 환경 변수(Resend API 키 등) 등록
+- [ ] Vercel 기본 도메인(`*.vercel.app`)으로 배포 — 스팸 방지/SEO/커버리지 정리 후 진행 예정
 - [ ] 배포 후 실제 문의 폼 발송 테스트
 
 ---
