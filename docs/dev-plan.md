@@ -61,7 +61,7 @@
 ├─ docs/
 │  ├─ prd.md
 │  └─ dev-plan.md
-└─ (기존 Figma Make 전용 파일 제거: vite.config.ts, .figma/, AGENTS.md 내용 갱신)
+└─ (기존 Figma Make 전용 파일 제거: vite.config.ts, .figma/)
 ```
 
 기존 `App.tsx`는 단일 파일에 모든 섹션이 들어있는데, Next.js 전환을 계기로 섹션별 컴포넌트로 분리해 재사용성과 테스트 용이성을 높인다.
@@ -70,37 +70,37 @@
 
 ## 4. 단계별 작업 항목
 
-### Phase 1 — 프로젝트 초기화
-- [ ] `yarn create next-app` 기반으로 App Router + TypeScript + Tailwind v4 프로젝트 생성
-- [ ] 기존 `package.json`의 의미 있는 스크립트(`dev`, `build`, `format`) 이관, 패키지 매니저는 Yarn으로 고정
-- [ ] 기존 `pnpm-lock.yaml` 제거, `yarn.lock`으로 전환
-- [ ] Figma Make 전용 파일 제거: `vite.config.ts`, `.figma/`, `src/imports/`(기획안은 `docs/prd.md`로 대체됨)
-- [ ] `AGENTS.md` 내용을 Next.js 구조에 맞게 갱신
+### Phase 1 — 프로젝트 초기화 ✅ 완료
+- [x] `yarn create next-app` 기반으로 App Router + TypeScript + Tailwind v4 프로젝트 생성
+- [x] 기존 `package.json`의 의미 있는 스크립트(`dev`, `build`, `format`) 이관, 패키지 매니저는 Yarn으로 고정
+- [x] 기존 `pnpm-lock.yaml` 제거, `yarn.lock`으로 전환
+- [x] Figma Make 전용 파일 제거: `vite.config.ts`, `.figma/`, `src/imports/`(기획안은 `docs/prd.md`로 대체됨)
+- [x] `AGENTS.md` 내용을 Next.js 구조에 맞게 갱신 → 이후 클로드만 사용하는 워크플로로 확정되어 2026-07-23 `CLAUDE.md`에 통합, `AGENTS.md`는 삭제
 
-### Phase 2 — 콘텐츠/컴포넌트 이관
-- [ ] `App.tsx`의 섹션을 위 디렉토리 구조대로 컴포넌트 분리
-- [ ] 데이터 상수(SERVICES, FAQS, CHAT, PROJECTS, PRICING, TECH_BADGES)를 `lib/constants.ts`로 이동
-- [ ] 인라인 `style={{}}` → Tailwind 유틸리티 클래스로 전면 리팩토링 (색상 토큰은 `tailwind.config` 또는 CSS 변수로 정의)
-- [ ] FAQ 아코디언, 문의 폼 등 클라이언트 상태가 필요한 부분은 `"use client"` 컴포넌트로 분리
+### Phase 2 — 콘텐츠/컴포넌트 이관 ✅ 완료
+- [x] `App.tsx`의 섹션을 위 디렉토리 구조대로 컴포넌트 분리
+- [x] 데이터 상수(SERVICES, FAQS, CHAT, PROJECTS, PRICING, TECH_BADGES)를 `lib/constants.ts`로 이동
+- [x] 인라인 `style={{}}` → Tailwind 유틸리티 클래스로 전면 리팩토링 (색상 토큰은 `tailwind.config` 또는 CSS 변수로 정의)
+- [x] FAQ 아코디언, 문의 폼 등 클라이언트 상태가 필요한 부분은 `"use client"` 컴포넌트로 분리
 
-### Phase 3 — 문의 폼 실제 동작 구현 (Resend)
-- [ ] Resend 계정 생성 및 API 키 발급
-- [ ] `app/api/contact/route.ts`에서 Resend API 호출로 폼 제출 처리 (서버 사이드 검증 포함), 수신 주소 `mignonwhale@gmail.com`
-- [ ] API 키는 `.env.local`에 저장, git에 커밋되지 않도록 `.gitignore` 확인
-- [ ] 스팸 방지(허니팟 필드 또는 간단한 rate limit) 적용 여부 결정
+### Phase 3 — 문의 폼 실제 동작 구현 (Resend) — 스팸 방지만 남음
+- [x] Resend 계정 생성 및 API 키 발급
+- [x] `app/api/contact/route.ts`에서 Resend API 호출로 폼 제출 처리 (서버 사이드 검증 포함), 수신 주소 `mignonwhale@gmail.com`
+- [x] API 키는 `.env.local`에 저장, git에 커밋되지 않도록 `.gitignore` 확인 (`*.local` 규칙으로 제외됨, `.env.local.example`은 템플릿으로 커밋)
+- [ ] 스팸 방지(허니팟 필드 또는 간단한 rate limit) 적용 여부 결정 — 미정
 
-### Phase 4 — SEO / 메타데이터
-- [ ] `app/layout.tsx`의 `metadata` 객체로 title/description/OG 이미지 설정
+### Phase 4 — SEO / 메타데이터 — 미착수
+- [x] `app/layout.tsx`의 `metadata` 객체로 title/description/OG 설정 (OG 이미지 리소스는 아직 없음)
 - [ ] `robots.txt`, `sitemap.xml` 필요 여부 결정
-- [ ] favicon 및 OG 이미지 리소스 준비 (`public/`)
+- [ ] favicon 및 OG 이미지 리소스 준비 (`public/` 폴더 자체가 아직 없음)
 
-### Phase 5 — 테스트
-- [ ] Vitest + React Testing Library 설정
-- [ ] 섹션별 컴포넌트 렌더링 테스트, 문의 폼 제출 로직 테스트
-- [ ] 커버리지 90% 이상 확인
+### Phase 5 — 테스트 — 커버리지 목표 미달
+- [x] Vitest + React Testing Library 설정
+- [x] 섹션별 컴포넌트 렌더링 테스트, 문의 폼 제출 로직 테스트 (13개 파일, 21개 테스트 모두 통과)
+- [ ] 커버리지 90% 이상 확인 — 현재 85.99%(statement/line 기준). `components/`, `lib/`, `app/api/contact/`는 100%지만 `app/page.tsx`, `app/layout.tsx`, `app/icon.tsx`에 테스트가 없어 부족
 
-### Phase 6 — 배포
-- [ ] 첫 커밋 및 `origin`(`https://github.com/mignonwhale/automation-landing-page.git`) push
+### Phase 6 — 배포 — 첫 커밋/push만 완료
+- [x] 첫 커밋 및 `origin`(`https://github.com/mignonwhale/automation-landing-page.git`) push (2026-07-23, 커밋 `42a736d`, 43 files)
 - [ ] Vercel 프로젝트 연결, 환경 변수(Resend API 키 등) 등록
 - [ ] Vercel 기본 도메인(`*.vercel.app`)으로 배포
 - [ ] 배포 후 실제 문의 폼 발송 테스트
@@ -112,7 +112,7 @@
 1. **이메일 발송 서비스**: Resend 무료 플랜 사용, 수신 주소는 `mignonwhale@gmail.com`
 2. **스타일링**: 인라인 style 전체를 Tailwind 유틸리티 클래스로 전면 리팩토링
 3. **도메인**: Vercel 기본 제공 도메인(`*.vercel.app`) 사용, 커스텀 도메인 없음
-4. **git 저장소**: 로컬 `git init` 및 원격(`origin`) 연결 완료. 단, 아직 커밋이 없어 push가 안 되는 상태 — 첫 커밋 후 push 필요 (Phase 6 참고)
+4. **git 저장소**: 로컬 `git init` 및 원격(`origin`) 연결 완료. 첫 커밋(`42a736d`) 및 `origin/main` push 완료 (2026-07-23)
 
 ---
 
