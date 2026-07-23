@@ -99,11 +99,11 @@
 - [x] 섹션별 컴포넌트 렌더링 테스트, 문의 폼 제출 로직 테스트, 허니팟 스팸 방지 테스트 (16개 파일, 27개 테스트 모두 통과)
 - [x] 커버리지 90% 이상 확인 — `app/page.tsx`, `app/layout.tsx`, `app/icon.tsx` 테스트 추가(2026-07-23)로 statement/branch/line 100%, funcs 95.45% 달성
 
-### Phase 6 — 배포 — 배포 완료, 문의 폼 발송 테스트만 남음
+### Phase 6 — 배포 ✅ 완료
 - [x] 첫 커밋 및 `origin`(`https://github.com/mignonwhale/automation-landing-page.git`) push (2026-07-23, 커밋 `42a736d`, 43 files)
 - [x] Vercel 프로젝트 연결, 환경 변수(Resend API 키 등) 등록
 - [x] Vercel 기본 도메인(`*.vercel.app`)으로 배포 — `https://automation-landing-page-kappa.vercel.app` (2026-07-23). 참고: `automation-landing-page` 이름이 이미 다른 프로젝트가 선점해 Vercel이 `-kappa` 접미사를 붙였고, `lib/constants.ts`의 `SITE_URL`도 이 실제 도메인으로 수정함 (이전에는 잘못된 남의 도메인을 가리키고 있었음)
-- [ ] 배포 후 실제 문의 폼 발송 테스트
+- [x] 배포 후 실제 문의 폼 발송 테스트 — `mignonwhale@gmail.com` 수신 확인 완료 (2026-07-23)
 
 ---
 
@@ -121,3 +121,30 @@
 - 웹자동화 잠재고객용 별도 섹션/샘플 추가
 - 크몽 등 마켓플레이스 채널 연동
 - 코드사이닝 인증서 적용 검토 (exe 보안 경고 해결)
+
+---
+
+## 7. 배포/설정 가이드
+
+새 기기에서 세팅하거나 API 키를 재발급해야 할 때 참고용.
+
+### 7-1. Resend API 키 발급 및 설정
+
+1. https://resend.com 가입 (무료 플랜: 월 3,000건)
+2. Dashboard → **API Keys** → **Create API Key** → 이름 지정 (예: `automation-landing-page`), 권한은 기본값(Sending access) 사용
+3. 발급된 키(`re_`로 시작)를 즉시 복사 — 이후 다시 조회 불가, 분실 시 재발급 필요
+4. 로컬 개발 환경: 프로젝트 루트에 `.env.local` 생성 후 아래 한 줄 추가 (`.env.local.example` 참고, `.gitignore`의 `*.local` 규칙으로 git에 커밋되지 않음)
+   ```
+   RESEND_API_KEY=re_xxxxxxxxxxxx
+   ```
+5. 발신 주소: 현재 `app/api/contact/route.ts`의 `from`은 Resend가 기본 제공하는 테스트 발신 주소(`onboarding@resend.dev`)를 사용 중이며, 무료 플랜 그대로 정상 발송·수신 확인 완료(2026-07-23). 추후 커스텀 도메인(예: `noreply@내도메인.com`)으로 보내려면 Resend Dashboard → **Domains**에서 도메인 인증(DNS TXT/MX 레코드 추가)이 별도로 필요함 — 현재는 미설정 상태.
+
+### 7-2. Vercel 프로젝트 설정
+
+1. https://vercel.com 가입/로그인 (GitHub 계정으로 로그인 권장 — 저장소 연동이 쉬움)
+2. **Add New** → **Project** → GitHub 저장소 `mignonwhale/automation-landing-page` 선택 후 Import
+3. Framework Preset은 Next.js가 자동 감지됨, Build Command/Output Directory는 기본값 그대로 사용
+4. **Settings → Environment Variables**에 `RESEND_API_KEY` 추가 (Production/Preview/Development 모두 체크 권장) — 값은 7-1에서 발급받은 키와 동일하게 입력
+5. **Deploy** 클릭 → 완료되면 Vercel이 `*.vercel.app` 도메인을 자동 할당함. 프로젝트명이 이미 다른 사람이 쓰고 있으면 임의 접미사가 붙는다 (이 프로젝트는 `automation-landing-page`가 선점되어 있어 `automation-landing-page-kappa.vercel.app`로 배정됨)
+6. 이후 GitHub `main` 브랜치에 push할 때마다 Vercel이 자동으로 재배포함 — 별도 배포 명령이나 CLI 조작 불필요
+7. **주의**: 배포된 실제 도메인은 `lib/constants.ts`의 `SITE_URL` 상수와 반드시 일치해야 함. 다르면 OG 이미지·`sitemap.xml`·`robots.txt`가 엉뚱한 주소를 가리키게 된다 (2026-07-23에 실제로 이 문제가 발생해 커밋 `6e478e6`에서 수정한 이력 있음). 커스텀 도메인을 새로 연결하는 경우에도 `SITE_URL`을 같이 갱신할 것.
