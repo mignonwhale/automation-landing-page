@@ -92,7 +92,7 @@
 ### Phase 4 — SEO / 메타데이터 ✅ 완료
 - [x] `app/layout.tsx`의 `metadata` 객체로 title/description/OG 설정 (`SITE_URL`/`SITE_TITLE`/`SITE_DESCRIPTION`은 `lib/constants.ts`로 통합)
 - [x] `robots.txt`, `sitemap.xml` 적용 — Next.js metadata route 컨벤션(`app/robots.ts`, `app/sitemap.ts`)으로 구현, 정적 파일 없이 자동 생성 (2026-07-23)
-- [x] favicon 및 OG 이미지 리소스 준비 — `public/` 폴더 대신 `app/icon.tsx`(32x32 파비콘), `app/opengraph-image.tsx`(1200x630 OG 이미지)를 `next/og`의 `ImageResponse`로 동적 생성 (2026-07-23)
+- [x] favicon 및 OG 이미지 리소스 준비 — 실제 디자인된 고래 로고 이미지를 `app/icon.png`(512x512), `app/opengraph-image.png`(1200x630, `#080D16` 배경에 contain)로 배치, `sharp`로 리사이즈만 하고 정적 파일 그대로 사용 (2026-07-23). 초기에는 `next/og` `ImageResponse`로 이모지 플레이스홀더를 동적 생성했으나 실제 이미지 확보 후 대체함
 
 ### Phase 5 — 테스트 ✅ 완료
 - [x] Vitest + React Testing Library 설정

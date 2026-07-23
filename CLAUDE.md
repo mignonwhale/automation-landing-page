@@ -30,7 +30,7 @@ Next.js (App Router) + TypeScript + Tailwind CSS v4 기반 랜딩페이지. Verc
 - `app/layout.tsx` - 전역 레이아웃, 메타데이터
 - `app/globals.css` - 전역 스타일, Tailwind import
 - `app/api/contact/route.ts` - 문의 폼 제출 → Resend로 이메일 발송, 허니팟 필드로 스팸 차단
-- `app/icon.tsx` - 파비콘, `app/opengraph-image.tsx` - OG 이미지 (둘 다 `next/og`로 동적 생성)
+- `app/icon.png` - 파비콘(512x512), `app/opengraph-image.png` - OG 이미지(1200x630, `#080D16` 배경에 contain) — 둘 다 정적 파일, Next.js 파일 컨벤션으로 자동 라우팅
 - `app/robots.ts`, `app/sitemap.ts` - SEO용 robots.txt/sitemap.xml (Next.js metadata route 컨벤션)
 - `components/` - 섹션별 컴포넌트
 - `lib/constants.ts` - 서비스/FAQ/가격 등 콘텐츠 데이터
