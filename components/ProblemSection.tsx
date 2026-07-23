@@ -14,7 +14,7 @@ export default function ProblemSection() {
           {PROBLEMS.map((item) => (
             <div
               key={item.text}
-              className="flex flex-col items-center gap-4 rounded-2xl border border-[#243447] bg-gray-900 px-7 py-8 text-center"
+              className="flex items-center justify-center gap-4 rounded-2xl border border-[#243447] bg-gray-900 px-7 py-8 text-center"
             >
               <span className="text-4xl leading-none">{item.icon}</span>
               <p className="m-0 text-[15px] leading-[1.75] text-slate-300">{item.text}</p>

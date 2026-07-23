@@ -14,10 +14,10 @@ export default function ServiceGrid() {
           {SERVICES.map((s) => (
             <div
               key={s.title}
-              className="flex flex-col items-center gap-3 rounded-2xl border border-[#1E2D42] bg-gray-900 px-4.5 py-6 text-center transition-colors hover:border-green-500/35"
+              className="flex items-center justify-center gap-3 rounded-2xl border border-[#1E2D42] bg-gray-900 px-4.5 py-6 text-center transition-colors hover:border-green-500/35"
             >
               <span className="text-3xl leading-none">{s.icon}</span>
-              <div className="w-full text-left">
+              <div className="text-center">
                 <p className="m-0 mb-1 text-[15px] font-bold text-slate-100">{s.title}</p>
                 <p className="m-0 text-[13px] text-slate-500">{s.desc}</p>
               </div>
